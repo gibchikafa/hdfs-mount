@@ -7,7 +7,7 @@ GITCOMMIT=`git rev-parse --short HEAD`
 BUILDTIME=`date +%FT%T%z`
 HOSTNAME=`hostname`
 
-all: hdfs-mount 
+all: hdfs-mount
 
 hdfs-mount: *.go $(GOPATH)/src/bazil.org/fuse $(GOPATH)/src/github.com/colinmarc/hdfs $(GOPATH)/src/golang.org/x/net/context $(GOPATH)/src/github.com/golang/protobuf/proto
 	go build -ldflags="-w -X main.GITCOMMIT=${GITCOMMIT} -X main.BUILDTIME=${BUILDTIME} -X main.HOSTNAME=${HOSTNAME}" -o hdfs-mount
