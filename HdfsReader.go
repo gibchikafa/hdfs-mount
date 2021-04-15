@@ -4,7 +4,7 @@ package main
 
 import (
 	"errors"
-	"github.com/colinmarc/hdfs"
+	"github.com/gibchikafa/hdfs"
 )
 
 // Allows to open an HDFS file as a seekable read-only stream

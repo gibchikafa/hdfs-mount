@@ -1,4 +1,4 @@
-[submodule "submodules/colinmarc-hdfs"]
-	path = submodules/colinmarc-hdfs
-	url = https://github.com/Microsoft/colinmarc-hdfs.git
+[submodule "submodules/gibchikafa-hdfs"]
+	path = submodules/gibchikafa-hdfs
+	url = https://github.com/gibchikafa/gibchikafa-hdfs.git
 	branch = master

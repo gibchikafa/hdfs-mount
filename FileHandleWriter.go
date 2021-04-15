@@ -35,13 +35,13 @@ func NewFileHandleWriter(handle *FileHandle, newFile bool) (*FileHandleWriter, e
 		}
 		w.Close()
 	}
-	stageDir := "/var/hdfs-mount" // TODO: make configurable
-	if ok := os.MkdirAll(stageDir, 0700); ok != nil {
-		Error.Println("Failed to create stageDir /var/hdfs-mount, Error:", ok)
+
+	if ok := os.MkdirAll(stagingDir, 0700); ok != nil {
+		Error.Println("Failed to create stageDir", stagingDir, ", Error:", ok)
 		return nil, ok
 	}
 	var err error
-	this.stagingFile, err = ioutil.TempFile(stageDir, "stage")
+	this.stagingFile, err = ioutil.TempFile(stagingDir, "stage")
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func (this *FileHandleWriter) Flush() error {
 		if err != io.EOF || IsSuccessOrBenignError(err) || !op.ShouldRetry("Flush()", err) {
 			return err
 		}
-		// Restart a new connection, https://github.com/colinmarc/hdfs/issues/86
+		// Restart a new connection, https://github.com/gibchikafa/hdfs/issues/86
 		this.Handle.File.FileSystem.HdfsAccessor.Close()
 		Error.Println("[", this.Handle.File.AbsolutePath(), "] failed flushing. Retry")
 		// Wait for 30 seconds before another retry to get another set of datanodes.
