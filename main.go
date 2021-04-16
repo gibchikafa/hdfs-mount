@@ -50,8 +50,6 @@ func main() {
 
 	allowedPrefixes := strings.Split(*allowedPrefixesString, ",")
 
-        log.Print("Allowed Prefixes", allowedPrefixes)
-
 	retryPolicy.MaxAttempts += 1 // converting # of retry attempts to total # of attempts
 
 	if *logLevel == 0 {
