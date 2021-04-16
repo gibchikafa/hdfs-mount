@@ -22,8 +22,6 @@ var Usage = func() {
 	flag.PrintDefaults()
 }
 
-var stageDir string
-
 func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
@@ -39,7 +37,6 @@ func main() {
 	expandZips := flag.Bool("expandZips", false, "Enables automatic expansion of ZIP archives")
 	readOnly := flag.Bool("readOnly", false, "Enables mount with readonly")
 	logLevel := flag.Int("logLevel", 0, "logs to be printed. 0: only fatal/err logs; 1: +warning logs; 2: +info logs")
-	flag.StringVar(&stageDir, "stageDir", "/var/hdfs-mount", "stage directory for writing file")
 
 	flag.Usage = Usage
 	flag.Parse()
@@ -52,6 +49,8 @@ func main() {
 	log.Print("hdfs-mount: current head GITCommit: ", GITCOMMIT, ", Built time: ", BUILDTIME, ", Built by:", HOSTNAME)
 
 	allowedPrefixes := strings.Split(*allowedPrefixesString, ",")
+
+        log.Print("Allowed Prefixes", allowedPrefixes)
 
 	retryPolicy.MaxAttempts += 1 // converting # of retry attempts to total # of attempts
 
