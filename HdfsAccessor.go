@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/colinmarc/hdfs"
-	"github.com/colinmarc/hdfs/internal/protocol/hadoop_hdfs"
+	"github.com/colinmarc/hdfs/protocol/hadoop_hdfs"
 	"io"
 	"os"
 	"os/user"
