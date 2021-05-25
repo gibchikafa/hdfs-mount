@@ -187,7 +187,7 @@ func (this *Dir) LookupAttrs(name string, attrs *Attrs) error {
 			return fuse.ENOENT
 		}
 		//short fix for allowing git clone
-		if strings.Contains(name, "github.com") {
+		if strings.Contains(name, "https") {
 			return fuse.ENOENT
 		}
 		return err
