@@ -186,10 +186,6 @@ func (this *Dir) LookupAttrs(name string, attrs *Attrs) error {
 		if pathError, ok := err.(*os.PathError); ok && (pathError.Err == os.ErrNotExist) {
 			return fuse.ENOENT
 		}
-		//short fix for allowing git clone
-		if strings.Contains(name, "https") {
-			return fuse.ENOENT
-		}
 		return err
 	}
 	// expiration time := now + 5 secs // TODO: make configurable
